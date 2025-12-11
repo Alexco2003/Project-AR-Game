@@ -4,6 +4,7 @@ using ARMagicBar.Resources.Scripts.Debugging;
 using ARMagicBar.Resources.Scripts.Gizmo;
 using ARMagicBar.Resources.Scripts.GizmoUI;
 using ARMagicBar.Resources.Scripts.PlacementBar;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 namespace ARMagicBar.Resources.Scripts.TransformLogic.Old
@@ -11,6 +12,7 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic.Old
     public class TransformLogic : MonoBehaviour
     {
         private Camera mainCam;
+        private XROrigin xrOrigin;
 
         [SerializeField] private bool enableLocalSpace = true;
         [SerializeField] private bool showDebugPlanes = false;
@@ -52,7 +54,16 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic.Old
         
         private void Start()
         {
-            mainCam = GameObject.FindObjectOfType<Camera>();
+            xrOrigin = FindFirstObjectByType<XROrigin>();
+
+            if (xrOrigin != null && xrOrigin.Camera != null)
+            {
+                mainCam = xrOrigin.Camera;
+            }
+            else
+            {
+                mainCam = FindObjectOfType<Camera>();
+            }
             _selectedAxis = SelectedAxis.none;
             
             // _manageTransformGizmoTypeVisuals = FindObjectOfType<ManageTransformGizmoTypeVisuals>();

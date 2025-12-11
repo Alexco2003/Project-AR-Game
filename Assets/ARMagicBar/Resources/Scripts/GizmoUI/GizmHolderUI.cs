@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using ARMagicBar.Resources.Scripts.Debugging;
 using ARMagicBar.Resources.Scripts.TransformLogic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +39,7 @@ namespace ARMagicBar.Resources.Scripts.GizmoUI
 
         private TransformableObject _transformableObject;
         private Camera mainCamera;
+        private XROrigin xrOrigin;
 
 
         public static GizmHolderUI Instance;  
@@ -58,8 +60,15 @@ namespace ARMagicBar.Resources.Scripts.GizmoUI
         {
             Instance = this;
             _transformableObject = GetComponentInParent<TransformableObject>();
-            
-            if (mainCamera == default)
+
+            xrOrigin = FindFirstObjectByType<XROrigin>();
+
+            if (xrOrigin != null && xrOrigin.Camera != null)
+            {
+                mainCamera = xrOrigin.Camera;
+                SetCanvasCamera();
+            }
+            else
             {
                 mainCamera = FindObjectOfType<Camera>();
                 SetCanvasCamera();
@@ -130,8 +139,18 @@ namespace ARMagicBar.Resources.Scripts.GizmoUI
             {
                 deleteButtonToggled?.Invoke();
             });
-            
-            mainCamera = FindObjectOfType<Camera>();
+
+            if (xrOrigin != null && xrOrigin.Camera != null)
+            {
+                mainCamera = xrOrigin.Camera;
+             
+            }
+            else
+            {
+                mainCamera = FindObjectOfType<Camera>();
+                
+            }
+           
 
 
             HideBackToGizmoUI();

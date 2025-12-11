@@ -3,6 +3,7 @@ using ARMagicBar.Resources.Scripts.Debugging;
 using ARMagicBar.Resources.Scripts.Gizmo;
 using ARMagicBar.Resources.Scripts.GizmoUI;
 using ARMagicBar.Resources.Scripts.PlacementBar;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 namespace ARMagicBar.Resources.Scripts.TransformLogic
@@ -10,6 +11,7 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
     public class TransformObjectByGizmoLogic : MonoBehaviour
     {
         private Camera mainCam;
+        private XROrigin xrOrigin;
 
         [SerializeField] private GameObject X;
         [SerializeField] private GameObject Y;
@@ -33,7 +35,16 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
         
         private void Start()
         {
-            mainCam = GameObject.FindObjectOfType<Camera>();
+            xrOrigin = FindFirstObjectByType<XROrigin>();
+
+            if (xrOrigin != null && xrOrigin.Camera != null)
+            {
+                mainCam = xrOrigin.Camera;
+            }
+            else
+            {
+                mainCam = FindObjectOfType<Camera>();
+            }
             _selectedAxis = SelectedAxis.none;
             // _manageTransformGizmoTypeVisuals = FindObjectOfType<ManageTransformGizmoTypeVisuals>();
             GizmHolderUI.Instance.resetTransformButtonToggled += OnresetTransformButtonToggled;

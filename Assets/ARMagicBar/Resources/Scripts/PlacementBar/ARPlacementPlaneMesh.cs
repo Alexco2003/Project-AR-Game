@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ARMagicBar.Resources.Scripts.Debugging;
 using ARMagicBar.Resources.Scripts.Other;
 using ARMagicBar.Resources.Scripts.TransformLogic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
@@ -52,18 +53,28 @@ namespace ARMagicBar.Resources.Scripts.PlacementBar
        }
 
         private ARRaycastManager arRaycastManager;
+        private XROrigin xrOrigin;
 
-       private void Awake()
+        private void Awake()
        {
            if (!FindObjectOfType<EventSystem>())
            {
                Debug.LogError(AssetName.NAME + ": No event system found, please add an event system to the scene");
            }
             
-            
-           mainCam = FindObjectOfType<Camera>();
-           Instance = this; 
-       }
+           xrOrigin = FindFirstObjectByType<XROrigin>();
+
+           if (xrOrigin != null && xrOrigin.Camera != null)
+           {
+               mainCam = xrOrigin.Camera;
+           }
+           else
+           {
+               mainCam = FindObjectOfType<Camera>();
+           }
+
+            Instance = this;
+        }
 
        private void Start()
        {
@@ -187,14 +198,17 @@ namespace ARMagicBar.Resources.Scripts.PlacementBar
             }
             
             
-            Ray ray = mainCam.ScreenPointToRay(touch);
+            Vector2 screenPoint = new Vector2(touch.x, touch.y);
             List<ARRaycastHit> hits = new();
 
-            arRaycastManager.Raycast(ray, hits, TrackableType.Planes);
+            bool gotHit = arRaycastManager.Raycast(screenPoint, hits, TrackableType.Planes);
+
+
             CustomLog.Instance.InfoLog("ShootingRay Plane Detection, hitcount => " + hits.Count);
-            if (hits.Count > 0)
+            if (gotHit && hits.Count > 0)
             {
-                InstantiateObjectAtPosition(hits[0].pose.position, Quaternion.LookRotation(Vector3.forward));
+                var hitPose = hits[0].pose;
+                InstantiateObjectAtPosition(hitPose.position, hitPose.rotation);
                     // hits[0].pose.rotation);
             }
         }

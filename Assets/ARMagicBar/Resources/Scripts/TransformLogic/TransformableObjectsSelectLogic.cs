@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ARMagicBar.Resources.Scripts.Debugging;
 using ARMagicBar.Resources.Scripts.Gizmo;
 using ARMagicBar.Resources.Scripts.PlacementBar;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,6 +18,7 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
         private TransformableObject selectedObject;
         
         private Camera mainCam;
+        private XROrigin xrOrigin;
 
         public static TransformableObjectsSelectLogic Instance;
         public event Action OnDeselectAll;
@@ -43,7 +45,18 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
         private void Awake()
         {
             Instance = this;
-            mainCam = FindObjectOfType<Camera>();
+
+            if (xrOrigin != null && xrOrigin.Camera != null)
+            {
+                mainCam = xrOrigin.Camera;
+               
+            }
+            else
+            {
+                mainCam = FindObjectOfType<Camera>();
+                
+            }
+           
         }
 
         public TransformableObject GetSelectedObject()

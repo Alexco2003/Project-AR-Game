@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ARMagicBar.Resources.Scripts.TransformLogic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,7 +10,8 @@ namespace ARMagicBar.Resources.Scripts.UIIndicator
     public class ControlPosition_TransformSelector_UI_Indicator : MonoBehaviour
     {
         private Camera mainCam;
-    
+        private XROrigin xrOrigin;
+
         [SerializeField] private GameObject UI_TransformElements;
         private Bounds TransformableObjectBounds;
         private Bounds InitialBounds; 
@@ -33,7 +35,17 @@ namespace ARMagicBar.Resources.Scripts.UIIndicator
     
         private void Start()
         {
-            mainCam = GameObject.FindObjectOfType<Camera>();
+            xrOrigin = FindFirstObjectByType<XROrigin>();
+
+            if (xrOrigin != null && xrOrigin.Camera != null)
+            {
+                mainCam = xrOrigin.Camera;
+            }
+            else
+            {
+                mainCam = FindObjectOfType<Camera>();
+            }
+
             if (selectVisualLogic == null)
             {
                 selectVisualLogic = FindObjectOfType<SelectVisualLogic>();
