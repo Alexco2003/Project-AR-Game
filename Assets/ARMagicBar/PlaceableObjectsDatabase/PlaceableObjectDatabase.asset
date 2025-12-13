@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlacementObjectSos:
   - {fileID: 11400000, guid: 97857a61329c04a39a995051c115c374, type: 2}
+  - {fileID: 11400000, guid: ca07d2394e7f2bb4e8d196861c793f1f, type: 2}
+  - {fileID: 11400000, guid: 347e0caf52716b8468873e7d8e8c3418, type: 2}
