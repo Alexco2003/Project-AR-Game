@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9dac3f5aaaf444bca8d085f50e9af70a, type: 3}
-  m_Name: Cuba1_PlaceableObject
-  m_EditorClassIdentifier: 
-  nameOfObject: Cuba1(Clone)
-  uiSprite: {fileID: 2800000, guid: 7134658e76c99423d82461457629143a, type: 3}
-  placementObject: {fileID: 3155926558373680383, guid: 4b9084ee90d0b41aeb3106e1dfce1f16, type: 3}
+  m_Name: CurvedStairParent_PlaceableObject
+  m_EditorClassIdentifier: Assembly-CSharp::ARMagicBar.Resources.Scripts.PlacementBar.PlacementObjectSO
+  nameOfObject: CurvedStairParent(Clone)
+  uiSprite: {fileID: 2800000, guid: e4781dcb2a09bc542873d70bfb77b0ea, type: 3}
+  placementObject: {fileID: 1844776018924215740, guid: 2d21cb820a3112041b7730440be36279, type: 3}
   placementCosts: 0

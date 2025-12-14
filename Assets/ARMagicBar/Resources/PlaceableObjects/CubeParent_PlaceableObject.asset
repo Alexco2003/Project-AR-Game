@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dac3f5aaaf444bca8d085f50e9af70a, type: 3}
+  m_Name: CubeParent_PlaceableObject
+  m_EditorClassIdentifier: Assembly-CSharp::ARMagicBar.Resources.Scripts.PlacementBar.PlacementObjectSO
+  nameOfObject: CubeParent(Clone)
+  uiSprite: {fileID: 2800000, guid: 22d6e55d15a042b48b13a3bb81e4e573, type: 3}
+  placementObject: {fileID: 3622931516788352883, guid: d6198c3715e44d34c841c073e469bdee, type: 3}
+  placementCosts: 0
