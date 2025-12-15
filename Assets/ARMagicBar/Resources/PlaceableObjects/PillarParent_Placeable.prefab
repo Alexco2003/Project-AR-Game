@@ -1783,6 +1783,7 @@ GameObject:
   - component: {fileID: 561583666493972637}
   - component: {fileID: 9124639291656695739}
   - component: {fileID: 7481433063908028552}
+  - component: {fileID: 264374360082288770}
   m_Layer: 0
   m_Name: Pillar
   m_TagString: Untagged
@@ -1921,6 +1922,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77920e69e9630c9498fed7b1d08a2d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnablePhysicsOnEvent
+  rb: {fileID: 9124639291656695739}
+--- !u!114 &264374360082288770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784236070357793975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ceb7ac34d57c842aecfcffe42c2d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResetRbPositionOfObject
   rb: {fileID: 9124639291656695739}
 --- !u!1 &2938017311047176767
 GameObject:

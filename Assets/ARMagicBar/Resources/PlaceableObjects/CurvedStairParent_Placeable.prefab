@@ -2299,6 +2299,7 @@ GameObject:
   - component: {fileID: 3144348396776864768}
   - component: {fileID: 7974519673602076157}
   - component: {fileID: 3191542535340411621}
+  - component: {fileID: 8115683929617352535}
   m_Layer: 0
   m_Name: CurvedStair
   m_TagString: Untagged
@@ -3875,6 +3876,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77920e69e9630c9498fed7b1d08a2d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnablePhysicsOnEvent
+  rb: {fileID: 7974519673602076157}
+--- !u!114 &8115683929617352535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4822782689831980511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ceb7ac34d57c842aecfcffe42c2d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResetRbPositionOfObject
   rb: {fileID: 7974519673602076157}
 --- !u!1 &4992258821597765505
 GameObject:
