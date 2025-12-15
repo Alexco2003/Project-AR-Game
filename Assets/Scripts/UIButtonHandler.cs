@@ -38,7 +38,7 @@ public class UIButtonHandler : MonoBehaviour
 
     private void OnShootButtonPressed()
     {
-        OnUIResetButtonPressed?.Invoke();
+        OnUIShootButtonPressed?.Invoke();
     }
 
     private void OnResetButtonPressed()
