@@ -36,6 +36,8 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
 
         private bool disableTransformOptions;
 
+        private bool canSelectObjects = true;
+
         public bool DisableTransformOptions
         {
             get => disableTransformOptions;
@@ -57,7 +59,22 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
             {
                 mainCam = FindObjectOfType<Camera>();
             }
+
+            UIButtonHandler.OnUIStartButtonPressed += OnStartButtonPressed;
+            UIButtonHandler.OnUIResetButtonPressed += OnResetButtonPressed;
         }
+
+        private void OnStartButtonPressed()
+        {
+            canSelectObjects = false;
+            DeselectSelectedObject();
+        }
+
+        private void OnResetButtonPressed()
+        {
+            canSelectObjects = true;
+        }
+
 
         public TransformableObject GetSelectedObject()
         {
@@ -69,13 +86,19 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
             selectedObject.Delete();
         }
 
+        public void DeselectSelectedObject()
+        {
+            selectedObject = null;
+            OnDeselectAll?.Invoke();
+        }
+
 
         void Update()
         {
             if(FindObjectOfType<EventSystem>() ==false) return;
             
             //If any object from the bar is selected 
-            if (PlacementBarLogic.Instance.GetPlacementObject() != null) return;
+            if (PlacementBarLogic.Instance.GetPlacementObject() != null || canSelectObjects==false) return;
 
             //If the player is currently manipulating a placed objects
             if (GlobalSelectState.Instance.GetTransformstate() ==

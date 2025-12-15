@@ -15,7 +15,8 @@ namespace ARMagicBar.Resources.Scripts.PlacementBarUI
         [Header("Ideally a empty GameObject in a canvas with vertical or horizontal stack")]
         [SerializeField] private Transform uiObjectParent;
         [FormerlySerializedAs("UIPrefab")] [SerializeField] private PlacementObjectUiItem uiItemPrefab;
-    
+        [FormerlySerializedAs("UIPrefab")][SerializeField] private PlacementObjectUiItem uiItemPrefabCustom;
+
         [Header("Change the texture of the page and hide icon")]
         [SerializeField] private Texture2D hideTexture;
         [SerializeField] private Texture2D paginationTexture; 
@@ -111,7 +112,7 @@ namespace ARMagicBar.Resources.Scripts.PlacementBarUI
             //Paginate item
             if (enablePage)
             {
-                PlacementObjectUiItem paginationUiItem = Instantiate(uiItemPrefab, parent: uiObjectParent);
+                PlacementObjectUiItem paginationUiItem = Instantiate(uiItemPrefabCustom, parent: uiObjectParent);
                 paginationUiItem.AddComponent<PaginationUIElement>();
                 paginationUiItem.gameObject.name = PAGINATIONOBJECT_NAME;
                 paginationUiItem.SetTexture(paginationTexture);
@@ -148,7 +149,7 @@ namespace ARMagicBar.Resources.Scripts.PlacementBarUI
             //Hide item
             if (enableHide)
             {
-                PlacementObjectUiItem hideUiItemObject = Instantiate(uiItemPrefab, parent: uiObjectParent);
+                PlacementObjectUiItem hideUiItemObject = Instantiate(uiItemPrefabCustom, parent: uiObjectParent);
                 hideUiItemObject.AddComponent<HideUIElement>();
                 hideUiItemObject.gameObject.name = HIDEOBJECT_NAME;
                 hideUiItemObject.SetTexture(hideTexture);
@@ -219,11 +220,20 @@ namespace ARMagicBar.Resources.Scripts.PlacementBarUI
 
         public void ShowUIElements()
         {
+            int startIndex = (currentPage - 1) * MAX_ITEMS_PER_PAGE;
+            int endIndex = Mathf.Min(startIndex + MAX_ITEMS_PER_PAGE, _uiObjectGameObjects.Count);
+
+            var i = 0;
             foreach (var placementObjectUI in _uiObjectGameObjects)
             {
-                if(placementObjectUI.GetComponent<HideUIElement>()) return;
+                if (i>=startIndex && i<endIndex)
+                {
+                    if (placementObjectUI.GetComponent<HideUIElement>()) return;
 
-                placementObjectUI.transform.gameObject.SetActive(true);
+                    placementObjectUI.transform.gameObject.SetActive(true);
+                }
+                i++;
+
 
             }
         

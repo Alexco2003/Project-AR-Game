@@ -13,4 +13,12 @@ MonoBehaviour:
   m_Name: PlaceableObjectDatabase
   m_EditorClassIdentifier: 
   PlacementObjectSos:
-  - {fileID: 11400000, guid: 97857a61329c04a39a995051c115c374, type: 2}
+  - {fileID: 11400000, guid: 1272925549f30f34fafede78ccad46c5, type: 2}
+  - {fileID: 11400000, guid: 7ada04e868547f3419b5332f064f71f7, type: 2}
+  - {fileID: 11400000, guid: 9ff718c31479f1e41bbba2b95e937b3c, type: 2}
+  - {fileID: 11400000, guid: b561c0bedf06e43459b6810dfc146b6c, type: 2}
+  - {fileID: 11400000, guid: 628b66ca10265e34a8542b4c492c19a6, type: 2}
+  - {fileID: 11400000, guid: 57d8db0519e0eb54f826b6d9046b0151, type: 2}
+  - {fileID: 11400000, guid: 94bbfbd0ef2d94744ad439cdea2cc69a, type: 2}
+  - {fileID: 11400000, guid: b705b919018cce54f91ed6f5269fc8aa, type: 2}
+  - {fileID: 11400000, guid: 662aa9d53d399d84c8ebe552548a8e42, type: 2}
