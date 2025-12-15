@@ -1051,6 +1051,7 @@ GameObject:
   - component: {fileID: 1152006685}
   - component: {fileID: 1152006684}
   - component: {fileID: 1152006686}
+  - component: {fileID: 1152006687}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1101,6 +1102,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HideBarOnStart
   ARMagicBar: {fileID: 1449567555}
+--- !u!114 &1152006687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152006683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293212b7e0762ac4a803ec03cd36881f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShootBallLogic
+  ballPrefab: {fileID: 1587485335118037732, guid: e6a80cf87c087c94885369a0c4c97e8a, type: 3}
+  ballForwardForce: 500
 --- !u!1 &1233767869
 GameObject:
   m_ObjectHideFlags: 0

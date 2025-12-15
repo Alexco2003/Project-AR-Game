@@ -220,11 +220,20 @@ namespace ARMagicBar.Resources.Scripts.PlacementBarUI
 
         public void ShowUIElements()
         {
+            int startIndex = (currentPage - 1) * MAX_ITEMS_PER_PAGE;
+            int endIndex = Mathf.Min(startIndex + MAX_ITEMS_PER_PAGE, _uiObjectGameObjects.Count);
+
+            var i = 0;
             foreach (var placementObjectUI in _uiObjectGameObjects)
             {
-                if(placementObjectUI.GetComponent<HideUIElement>()) return;
+                if (i>=startIndex && i<endIndex)
+                {
+                    if (placementObjectUI.GetComponent<HideUIElement>()) return;
 
-                placementObjectUI.transform.gameObject.SetActive(true);
+                    placementObjectUI.transform.gameObject.SetActive(true);
+                }
+                i++;
+
 
             }
         
