@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: f4c99a340a6e6504aa6e992b7a253612
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153979
+  packageName: Untitled
+  packageVersion: 1.0
+  assetPath: Assets/FreeButtonSet/Fonts/Poppins-Bold.ttf
+  uploadId: 329398
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,7 +15,6 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Poppins
   fontNames:
   - Poppins
   fallbackFontReferences:
@@ -21,10 +27,3 @@ TrueTypeFontImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 153979
-  packageName: Untitled
-  packageVersion: 1.0
-  assetPath: Assets/FreeButtonSet/Fonts/Poppins-Bold.ttf
-  uploadId: 329398
