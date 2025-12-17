@@ -1407,6 +1407,8 @@ GameObject:
   - component: {fileID: 1152006684}
   - component: {fileID: 1152006686}
   - component: {fileID: 1152006687}
+  - component: {fileID: 1152006688}
+  - component: {fileID: 1152006689}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1429,6 +1431,9 @@ MonoBehaviour:
   UIStartButton: {fileID: 267969351}
   UIShootButton: {fileID: 1466942271}
   UIResetButton: {fileID: 41635998}
+  UIScoreButton: {fileID: 953418994}
+  UITimeButton: {fileID: 1237241181}
+  UIRestartButton: {fileID: 602515771}
 --- !u!4 &1152006685
 Transform:
   m_ObjectHideFlags: 0
@@ -1471,6 +1476,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShootBallLogic
   ballPrefab: {fileID: 1587485335118037732, guid: e6a80cf87c087c94885369a0c4c97e8a, type: 3}
   ballForwardForce: 500
+--- !u!114 &1152006688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152006683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4dcc3c9a00273438913d033c1f9a31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideScore
+  ScoreUI: {fileID: 1765588041}
+--- !u!114 &1152006689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152006683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebf681c7196f3e4b9bdb97d54c467af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HideEnd
+  EndUI: {fileID: 1710666210}
 --- !u!1 &1233767869
 GameObject:
   m_ObjectHideFlags: 0

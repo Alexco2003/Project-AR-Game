@@ -62,6 +62,7 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
 
             UIButtonHandler.OnUIStartButtonPressed += OnStartButtonPressed;
             UIButtonHandler.OnUIResetButtonPressed += OnResetButtonPressed;
+            UIButtonHandler.OnUIRestartButtonPressed += OnResetButtonPressed;
         }
 
         private void OnStartButtonPressed()
