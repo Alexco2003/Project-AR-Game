@@ -22,9 +22,9 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField]
     private RewardEntry[] rewardEntries = new RewardEntry[]
     {
-        new RewardEntry { tag = "Crystal", score = 30 },
-        new RewardEntry { tag = "Ingot", score = 20 },
-        new RewardEntry { tag = "Jar", score = 10 }
+        new RewardEntry { tag = "Crystal", score = 35 },
+        new RewardEntry { tag = "Ingot", score = 25 },
+        new RewardEntry { tag = "Jar", score = 15 }
     };
 
     [SerializeField] 
@@ -35,14 +35,29 @@ public class ScoreHandler : MonoBehaviour
 
     private Dictionary<string, int> rewardMap = new Dictionary<string, int>(StringComparer.Ordinal);
 
+    public static event Action OnScoreChanged;
+    public static event Action DoNothing;
 
     private void Awake()
     {
         BuildRewardMap();
         UIButtonHandler.OnUIRestartButtonPressed += () => SetScore(0);
         UIButtonHandler.OnUIResetButtonPressed += () => SetScore(0);
-        UIButtonHandler.OnUIScoreButtonPressed += () => AddScore(1);
+        UIButtonHandler.OnUIScoreButtonPressed += HandleScoreChanged;
+        TimeHandler.OnCountdownChanged += HandleTimeChanged;
 
+    }
+
+    private void HandleTimeChanged()
+    {
+        score -= 15;
+        RefreshScoreText();
+    }
+
+    private void HandleScoreChanged()
+    {
+        OnScoreChanged?.Invoke();
+        AddScore(5);
     }
 
     private void Start()

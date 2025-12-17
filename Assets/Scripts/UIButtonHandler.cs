@@ -16,6 +16,8 @@ public class UIButtonHandler : MonoBehaviour
     private Button UITimeButton;
     [SerializeField]
     private Button UIRestartButton;
+    [SerializeField]
+    private Button UIRestartMainButton;
 
 
     public static event Action OnUIStartButtonPressed;
@@ -37,6 +39,7 @@ public class UIButtonHandler : MonoBehaviour
         UIScoreButton.onClick.AddListener(OnScoreButtonPressed);
         UITimeButton.onClick.AddListener(OnTimeButtonPressed);
         UIRestartButton.onClick.AddListener(OnRestartButtonPressed);
+        UIRestartMainButton.onClick.AddListener(OnRestartButtonPressed);
 
 
 
@@ -48,7 +51,8 @@ public class UIButtonHandler : MonoBehaviour
     private void OnRestartButtonPressed()
     {
         OnUIRestartButtonPressed?.Invoke();
-
+        UIStartButton.gameObject.SetActive(true);
+        UIShootButton.gameObject.SetActive(false);
     }
 
     private void OnTimeButtonPressed()
