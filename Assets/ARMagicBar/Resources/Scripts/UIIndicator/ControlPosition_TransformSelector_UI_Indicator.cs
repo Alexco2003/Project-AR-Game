@@ -50,7 +50,13 @@ namespace ARMagicBar.Resources.Scripts.UIIndicator
             {
                 selectVisualLogic = FindObjectOfType<SelectVisualLogic>();
             }
-        
+
+            var initialRenderers = selectVisualLogic?.ReturnRenderer();
+            if (initialRenderers == null || initialRenderers.Count == 0)
+            {
+                objectHasNoRenderer = true;
+                return;
+            }
             // Make sure the _transformableObjectSelectVisual is assigned
             TransformableObjectBounds = ReturnHighestBounds(selectVisualLogic.ReturnRenderer());;
 
@@ -61,7 +67,10 @@ namespace ARMagicBar.Resources.Scripts.UIIndicator
             }
         
             InitialBounds = TransformableObjectBounds;
-            UI_TransformElements.transform.position =  new Vector3(InitialBounds.center.x,InitialBounds.max.y, InitialBounds.center.z);
+            if (UI_TransformElements != null)
+            {
+                UI_TransformElements.transform.position = new Vector3(InitialBounds.center.x, InitialBounds.max.y, InitialBounds.center.z);
+            }
             _placementObjectVisual = selectVisualLogic.GetComponentInChildren<PlacementObjectVisual.PlacementObjectVisual>();
         }
 
@@ -98,6 +107,20 @@ namespace ARMagicBar.Resources.Scripts.UIIndicator
         
             foreach (var renderer in renderers)
             {
+                if (renderer == null) continue;
+
+                Bounds b;
+                try
+                {
+                    b = renderer.bounds;
+                }
+                catch (MissingReferenceException)
+                {
+                   
+                    continue;
+                }
+                
+
                 if (renderer.bounds == default) continue;
             
                 float boundsMaxY = renderer.bounds.max.y;

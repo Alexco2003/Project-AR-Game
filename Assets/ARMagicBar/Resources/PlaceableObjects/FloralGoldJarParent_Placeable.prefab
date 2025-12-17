@@ -3451,7 +3451,7 @@ GameObject:
   - component: {fileID: 7203023234380150852}
   m_Layer: 0
   m_Name: FloralGoldJar
-  m_TagString: Untagged
+  m_TagString: Jar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

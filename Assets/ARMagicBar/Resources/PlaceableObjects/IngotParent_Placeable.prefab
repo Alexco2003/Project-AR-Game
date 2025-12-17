@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 4910420968166479552}
   m_Layer: 0
   m_Name: 1_ignot
-  m_TagString: Untagged
+  m_TagString: Ingot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

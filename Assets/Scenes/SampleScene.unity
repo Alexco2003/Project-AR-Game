@@ -1171,7 +1171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 102.61408, y: -155.25}
+  m_AnchoredPosition: {x: 275.44986, y: -155.25}
   m_SizeDelta: {x: 87.7, y: 54.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &953418994
@@ -1409,6 +1409,7 @@ GameObject:
   - component: {fileID: 1152006687}
   - component: {fileID: 1152006688}
   - component: {fileID: 1152006689}
+  - component: {fileID: 1152006690}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1502,6 +1503,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HideEnd
   EndUI: {fileID: 1710666210}
+--- !u!114 &1152006690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152006683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c76709f679fd0ca49adfea97a29d8a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreHandler
+  scoreText: {fileID: 872827043}
+  score: 0
+  destroyOnHit: 0
+  destroyDelay: 7
 --- !u!1 &1233767869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1812,7 +1829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735.74225, y: -155.25}
+  m_AnchoredPosition: {x: 1254.2495, y: -155.25}
   m_SizeDelta: {x: 87.7, y: 54.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237241181

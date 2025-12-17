@@ -47,7 +47,7 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
         
         public List<Renderer> ReturnRenderer()
         {
-            return objectRenderers;
+            return objectRenderers == null ? new List<Renderer>() : objectRenderers;
         }
         
         //Get all renderer types
@@ -74,12 +74,16 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
                     UnityEngine.Transform[] childObjects = objectVisual.GetComponentsInChildren<UnityEngine.Transform>();
                     foreach (var childtransf in childObjects)
                     {
-                        if(childtransf.GetComponent<Renderer>())
+                        if (childtransf.GetComponent<Renderer>())
                         {
-                            if(childtransf.GetComponent<ParticleSystem>()){ continue; }
+                            if (childtransf == null) continue;
+                            if (childtransf.GetComponent<Renderer>() == null) continue;
+                            if (childtransf.GetComponent<ParticleSystem>()) { continue; }
                             CustomLog.Instance.InfoLog("Adding " + childtransf.GetComponent<Renderer>().name);
                             childRenderer.Add(childtransf.GetComponent<Renderer>());
                         }
+                        else { continue; }
+
                     }
                 }
             }
@@ -89,14 +93,23 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
         //Add base material state
         void SetBaseMaterials()
         {
+            rendererBaseSelectMaterialDict.Clear();
+            if (objectRenderers == null) return;
+
             foreach (var renderer in objectRenderers)
             {
-                Renderer rend = renderer;
-                Material[] baseMaterials = renderer.sharedMaterials;
-                Material[] selectedMaterials = null;
-                
-                rendererBaseSelectMaterialDict.Add(rend, (baseMaterials, selectedMaterials));
-                
+                if (renderer == null) continue;
+                try
+                {
+                    Material[] baseMaterials = renderer.sharedMaterials;
+                    rendererBaseSelectMaterialDict[renderer] = (baseMaterials, null);
+                }
+                catch (MissingReferenceException)
+                {
+                    // renderer's native object was destroyed between enumeration and access; skip it
+                    continue;
+                }
+
                 // (Renderer renderer, Material[] baseMaterials, Material[] selectedMaterials) rendererToMaterial = new(renderer, renderer.sharedMaterials, null);
                 // rendererToMaterials.Add(rendererToMaterial);
             }
@@ -128,23 +141,28 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
         {
             SetSelectedMaterialDependingOnRP();
 
-            for (int i = 0; i < rendererBaseSelectMaterialDict.Count; i++)
-            {
-                //New Array at the materials length +1
-                Material[] selectMaterials = new Material[rendererBaseSelectMaterialDict.ElementAt(i).Value.Item1.Length +1];
-                
-                for (int j = 0; j < rendererBaseSelectMaterialDict.ElementAt(i).Value.Item1.Length; j++)
-                {
-                    selectMaterials[j] =  rendererBaseSelectMaterialDict.ElementAt(i).Value.Item1[j];
-                }
-                
-                selectMaterials[selectMaterials.Length - 1] = materialToApply;
+            if (rendererBaseSelectMaterialDict == null || rendererBaseSelectMaterialDict.Count == 0) return;
+            var keys = rendererBaseSelectMaterialDict.Keys.ToList();
 
-                Renderer currentKey = rendererBaseSelectMaterialDict.Keys.ElementAt(i);
-                Material[] currentBaseMaterials = rendererBaseSelectMaterialDict.Values.ElementAt(i).Item1;
-                
-                rendererBaseSelectMaterialDict.Remove(currentKey);
-                rendererBaseSelectMaterialDict.Add(currentKey,(currentBaseMaterials, selectMaterials));
+            foreach (var rend in keys)
+            {
+                if (rend == null)
+                {
+                    rendererBaseSelectMaterialDict.Remove(rend);
+                    continue;
+                }
+
+                var baseMaterials = rendererBaseSelectMaterialDict[rend].Item1;
+                if (baseMaterials == null) continue;
+
+                Material[] selectMaterials = new Material[baseMaterials.Length + 1];
+                for (int j = 0; j < baseMaterials.Length; j++)
+                {
+                    selectMaterials[j] = baseMaterials[j];
+                }
+
+                selectMaterials[selectMaterials.Length - 1] = materialToApply;
+                rendererBaseSelectMaterialDict[rend] = (baseMaterials, selectMaterials);
             }
         }
 
@@ -152,8 +170,10 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
         {
             Hide();
             _transformableObject = GetComponent<TransformableObject>();
-            _transformableObject.OnWasSelected += TransformableObjectWasSelected;
-            SelectObjectsLogic.Instance.OnDeselectAll += Hide;
+            if (_transformableObject != null)
+                _transformableObject.OnWasSelected += TransformableObjectWasSelected;
+            if (SelectObjectsLogic.Instance != null)
+                SelectObjectsLogic.Instance.OnDeselectAll += Hide;
         }
         
         void TransformableObjectWasSelected(bool wasSelected)
@@ -171,28 +191,67 @@ namespace ARMagicBar.Resources.Scripts.TransformLogic
 
         private void OnDestroy()
         {
+            if (SelectObjectsLogic.Instance != null)
+                SelectObjectsLogic.Instance.OnDeselectAll -= Hide;
 
-            SelectObjectsLogic.Instance.OnDeselectAll -= Hide;
-            
-            if(_transformableObject)
+            if (_transformableObject != null)
                 _transformableObject.OnWasSelected -= TransformableObjectWasSelected;
         }
         
         void Show()
         {
-            for (int i = 0; i < rendererBaseSelectMaterialDict.Count; i++)
+            if (rendererBaseSelectMaterialDict == null) return;
+
+            // iterate over a copy of keys to allow removing invalid entries safely
+            var keys = rendererBaseSelectMaterialDict.Keys.ToList();
+            foreach (var renderer in keys)
             {
-                rendererBaseSelectMaterialDict.Keys.ElementAt(i).sharedMaterials =
-                    rendererBaseSelectMaterialDict.Values.ElementAt(i).Item2;
+                if (renderer == null)
+                {
+                    rendererBaseSelectMaterialDict.Remove(renderer);
+                    continue;
+                }
+
+                var selected = rendererBaseSelectMaterialDict[renderer].Item2;
+                if (selected == null) continue;
+
+                try
+                {
+                    renderer.sharedMaterials = selected;
+                }
+                catch (MissingReferenceException)
+                {
+                    // renderer was destroyed; remove from dictionary to avoid future attempts
+                    rendererBaseSelectMaterialDict.Remove(renderer);
+                }
             }
         }
 
         void Hide()
         {
-            for (int i = 0; i < rendererBaseSelectMaterialDict.Count; i++)
+            if (rendererBaseSelectMaterialDict == null) return;
+
+            var keys = rendererBaseSelectMaterialDict.Keys.ToList();
+            foreach (var renderer in keys)
             {
-                rendererBaseSelectMaterialDict.Keys.ElementAt(i).sharedMaterials =
-                    rendererBaseSelectMaterialDict.Values.ElementAt(i).Item1;
+                if (renderer == null)
+                {
+                    rendererBaseSelectMaterialDict.Remove(renderer);
+                    continue;
+                }
+
+                var baseMats = rendererBaseSelectMaterialDict[renderer].Item1;
+                if (baseMats == null) continue;
+
+                try
+                {
+                    renderer.sharedMaterials = baseMats;
+                }
+                catch (MissingReferenceException)
+                {
+                    // renderer was destroyed; remove its entry
+                    rendererBaseSelectMaterialDict.Remove(renderer);
+                }
             }
         }
     }
