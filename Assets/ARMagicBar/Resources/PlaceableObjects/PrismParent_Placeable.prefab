@@ -2583,6 +2583,7 @@ GameObject:
   - component: {fileID: 9098853545510177200}
   - component: {fileID: 3024230187449619773}
   - component: {fileID: 5412495741562368361}
+  - component: {fileID: 3924950700241385030}
   m_Layer: 0
   m_Name: PrismParent_Placeable
   m_TagString: Untagged
@@ -2711,6 +2712,18 @@ MonoBehaviour:
   selectedMaterialURP: {fileID: 2100000, guid: 4f61532d5437a45b681ae802f44572a1, type: 2}
   objectRenderers: []
   parentOfRenderer: {fileID: 0}
+--- !u!114 &3924950700241385030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3784087382518967076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart
 --- !u!1 &3842805982674829341
 GameObject:
   m_ObjectHideFlags: 0

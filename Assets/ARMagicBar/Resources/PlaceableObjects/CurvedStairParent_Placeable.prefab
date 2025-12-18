@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8047193933625656658}
   - component: {fileID: 3279303394218002}
   - component: {fileID: 6180186121298846839}
+  - component: {fileID: 1145045226540521276}
   m_Layer: 0
   m_Name: CurvedStairParent_Placeable
   m_TagString: Untagged
@@ -144,6 +145,18 @@ MonoBehaviour:
   selectedMaterialURP: {fileID: 2100000, guid: 4f61532d5437a45b681ae802f44572a1, type: 2}
   objectRenderers: []
   parentOfRenderer: {fileID: 0}
+--- !u!114 &1145045226540521276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14507090085974453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart
 --- !u!1 &213801558277644318
 GameObject:
   m_ObjectHideFlags: 0

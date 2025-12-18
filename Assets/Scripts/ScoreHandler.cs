@@ -36,7 +36,6 @@ public class ScoreHandler : MonoBehaviour
     private Dictionary<string, int> rewardMap = new Dictionary<string, int>(StringComparer.Ordinal);
 
     public static event Action OnScoreChanged;
-    public static event Action DoNothing;
 
     private void Awake()
     {

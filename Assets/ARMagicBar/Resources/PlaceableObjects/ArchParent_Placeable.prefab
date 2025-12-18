@@ -6244,6 +6244,7 @@ GameObject:
   - component: {fileID: 454167753454092128}
   - component: {fileID: 8971674506259791390}
   - component: {fileID: 1771114919994381743}
+  - component: {fileID: 1023964633550640333}
   m_Layer: 0
   m_Name: ArchParent_Placeable
   m_TagString: Untagged
@@ -6372,3 +6373,15 @@ MonoBehaviour:
   selectedMaterialURP: {fileID: 2100000, guid: 4f61532d5437a45b681ae802f44572a1, type: 2}
   objectRenderers: []
   parentOfRenderer: {fileID: 0}
+--- !u!114 &1023964633550640333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9199679909916224542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart

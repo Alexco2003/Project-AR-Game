@@ -4004,6 +4004,7 @@ GameObject:
   - component: {fileID: 8291882457411571080}
   - component: {fileID: 598385938309004221}
   - component: {fileID: 5616747519116739879}
+  - component: {fileID: 6922415017187028729}
   m_Layer: 0
   m_Name: IngotParent_Placeable
   m_TagString: Untagged
@@ -4132,6 +4133,18 @@ MonoBehaviour:
   selectedMaterialURP: {fileID: 2100000, guid: 4f61532d5437a45b681ae802f44572a1, type: 2}
   objectRenderers: []
   parentOfRenderer: {fileID: 0}
+--- !u!114 &6922415017187028729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074106255158027345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart
 --- !u!1 &7148339303328184539
 GameObject:
   m_ObjectHideFlags: 0

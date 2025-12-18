@@ -30,7 +30,6 @@ public class TimeHandler : MonoBehaviour
         UIButtonHandler.OnUIResetButtonPressed += HandleResetPressed;
         ScoreHandler.OnScoreChanged += HandleScoreChanged;
         UIButtonHandler.OnUIRestartButtonPressed += HandleRestartPressed;
-        ScoreHandler.DoNothing += () => {  };
 
     }
 
