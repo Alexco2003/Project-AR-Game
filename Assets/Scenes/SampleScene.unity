@@ -1921,7 +1921,7 @@ MonoBehaviour:
   scoreText: {fileID: 794329980}
   score: 0
   destroyOnHit: 0
-  destroyDelay: 7
+  destroyDelay: 5
 --- !u!114 &1152006691
 MonoBehaviour:
   m_ObjectHideFlags: 0
