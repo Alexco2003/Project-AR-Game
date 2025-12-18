@@ -31,7 +31,7 @@ public class ScoreHandler : MonoBehaviour
     private bool destroyOnHit = false;
 
     [SerializeField]
-    private int destroyDelay = 7;
+    private int destroyDelay = 5;
 
     private Dictionary<string, int> rewardMap = new Dictionary<string, int>(StringComparer.Ordinal);
 
@@ -119,7 +119,7 @@ public class ScoreHandler : MonoBehaviour
             if (!other.TryGetComponent<PendingDespawn>(out _))
             {
                 var pd = other.AddComponent<PendingDespawn>();
-                pd.Initialize(Color.red, 2.0f, destroyDelay);
+                pd.Initialize(Color.red, 10.0f, destroyDelay);
                 Destroy(other, destroyDelay);
             }
 
@@ -155,13 +155,15 @@ public class ScoreHandler : MonoBehaviour
     {
         UIButtonHandler.OnUIRestartButtonPressed -= () => SetScore(0);
         UIButtonHandler.OnUIResetButtonPressed -= () => SetScore(0);
-        UIButtonHandler.OnUIScoreButtonPressed -= () => AddScore(1);
+        UIButtonHandler.OnUIScoreButtonPressed -= HandleScoreChanged;
+        TimeHandler.OnCountdownChanged -= HandleTimeChanged;
+
     }
 
     private class PendingDespawn : MonoBehaviour
     {
     private Color outlineColor = Color.red;
-    private float pulseSpeed = 2f;
+    private float pulseSpeed = 10f;
     private float emissionMultiplier = 2f;
 
     private Renderer[] renderers;
