@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HideBarOnStart : MonoBehaviour
+public class HideBar : MonoBehaviour
 {
     [SerializeField]
     private Canvas ARMagicBar;
@@ -11,6 +11,7 @@ public class HideBarOnStart : MonoBehaviour
     {
         UIButtonHandler.OnUIStartButtonPressed += HideARMagicBarOnButtonPressed;
         UIButtonHandler.OnUIResetButtonPressed += ShowARMagicBarOnButtonPressed;
+        UIButtonHandler.OnUIRestartButtonPressed += ShowARMagicBarOnButtonPressed;
 
     }
 
@@ -34,5 +35,6 @@ public class HideBarOnStart : MonoBehaviour
     {
         UIButtonHandler.OnUIStartButtonPressed -= HideARMagicBarOnButtonPressed;
         UIButtonHandler.OnUIResetButtonPressed -= ShowARMagicBarOnButtonPressed;
+        UIButtonHandler.OnUIRestartButtonPressed -= ShowARMagicBarOnButtonPressed;
     }
 }

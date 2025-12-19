@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Crystal
+  - Jar
+  - Ingot
+  - Sphere
   layers:
   - Default
   - TransparentFX

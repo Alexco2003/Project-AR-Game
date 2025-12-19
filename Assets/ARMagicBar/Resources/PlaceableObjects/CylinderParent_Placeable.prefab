@@ -3586,6 +3586,7 @@ GameObject:
   - component: {fileID: 5356918539378545714}
   - component: {fileID: 1328886444649225541}
   - component: {fileID: 3949423670812906568}
+  - component: {fileID: 4133783022046320069}
   m_Layer: 0
   m_Name: CylinderParent_Placeable
   m_TagString: Untagged
@@ -3714,6 +3715,18 @@ MonoBehaviour:
   selectedMaterialURP: {fileID: 2100000, guid: 4f61532d5437a45b681ae802f44572a1, type: 2}
   objectRenderers: []
   parentOfRenderer: {fileID: 0}
+--- !u!114 &4133783022046320069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6708679532634152065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart
 --- !u!1 &6791086305826959793
 GameObject:
   m_ObjectHideFlags: 0

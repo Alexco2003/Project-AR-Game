@@ -8978,6 +8978,7 @@ GameObject:
   - component: {fileID: 951139498721270245}
   - component: {fileID: 8252734674141619915}
   - component: {fileID: 101082153273011350}
+  - component: {fileID: 5804881498151294501}
   m_Layer: 0
   m_Name: TorusParent_Placeable
   m_TagString: Untagged
@@ -9106,6 +9107,18 @@ MonoBehaviour:
   selectedMaterialURP: {fileID: 2100000, guid: 4f61532d5437a45b681ae802f44572a1, type: 2}
   objectRenderers: []
   parentOfRenderer: {fileID: 0}
+--- !u!114 &5804881498151294501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6126283779328626584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart
 --- !u!1 &6147302884869115535
 GameObject:
   m_ObjectHideFlags: 0

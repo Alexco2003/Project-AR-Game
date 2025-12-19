@@ -3409,6 +3409,7 @@ GameObject:
   - component: {fileID: 612636186118923069}
   - component: {fileID: 4561514684564942737}
   - component: {fileID: 512963708117287123}
+  - component: {fileID: 4742858313390772256}
   m_Layer: 0
   m_Name: CubeParent_Placeable
   m_TagString: Untagged
@@ -3537,6 +3538,18 @@ MonoBehaviour:
   selectedMaterialURP: {fileID: 2100000, guid: 4f61532d5437a45b681ae802f44572a1, type: 2}
   objectRenderers: []
   parentOfRenderer: {fileID: 0}
+--- !u!114 &4742858313390772256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404599642963466765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart
 --- !u!1 &6566624938690045374
 GameObject:
   m_ObjectHideFlags: 0
