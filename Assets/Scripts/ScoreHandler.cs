@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class ScoreHandler : MonoBehaviour
 {
@@ -44,7 +45,20 @@ public class ScoreHandler : MonoBehaviour
         UIButtonHandler.OnUIResetButtonPressed += () => SetScore(0);
         UIButtonHandler.OnUIScoreButtonPressed += HandleScoreChanged;
         TimeHandler.OnCountdownChanged += HandleTimeChanged;
+        RewardFallDetector.OnRewardLanded += HandleFallReward;
 
+    }
+
+    private void HandleFallReward(GameObject rewardObject)
+    {
+        if (rewardObject == null) return;
+        var tag = rewardObject.tag;
+        if (string.IsNullOrEmpty(tag)) return;
+
+        if (rewardMap.TryGetValue(tag, out int points))
+        {
+            AddScore(3*points);
+        }
     }
 
     private void HandleTimeChanged()
