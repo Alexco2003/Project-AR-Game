@@ -34,6 +34,12 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField]
     private int destroyDelay = 5;
 
+    [SerializeField]
+    private GameObject impactVfxPrefab;
+
+    [SerializeField]
+    private float impactVfxLifetime = 2f;
+
     private Dictionary<string, int> rewardMap = new Dictionary<string, int>(StringComparer.Ordinal);
 
     public static event Action OnScoreChanged;
@@ -116,7 +122,7 @@ public class ScoreHandler : MonoBehaviour
 
     }
 
-    private void HandleCollision(GameObject other)
+    private void HandleCollision(GameObject other, Vector3 contactPoint)
     {
         if (other == null) return;
 
@@ -126,6 +132,19 @@ public class ScoreHandler : MonoBehaviour
         if (rewardMap.TryGetValue(otherTag, out int points))
         {
             AddScore(points);
+
+            if (impactVfxPrefab != null)
+            {
+                try
+                {
+                    var v = Instantiate(impactVfxPrefab, contactPoint, Quaternion.identity);
+                    Destroy(v, Mathf.Max(0.1f, impactVfxLifetime));
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning("Failed to spawn impact VFX: " + ex.Message);
+                }
+            }
 
             if (destroyOnHit)
                 Destroy(other);
@@ -334,12 +353,16 @@ private class CollisionForwarder : MonoBehaviour
 
         private void OnTriggerEnter(Collider other)
         {
-            owner?.HandleCollision(other.gameObject);
+            Vector3 contactPoint = other.ClosestPoint(transform.position);
+            owner?.HandleCollision(other.gameObject, contactPoint);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            owner?.HandleCollision(collision.gameObject);
+            Vector3 contactPoint = transform.position;
+            if (collision.contactCount > 0)
+                contactPoint = collision.GetContact(0).point;
+            owner?.HandleCollision(collision.gameObject, contactPoint);
         }
     }
 }

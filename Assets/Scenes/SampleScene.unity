@@ -2168,6 +2168,8 @@ MonoBehaviour:
   score: 0
   destroyOnHit: 0
   destroyDelay: 5
+  impactVfxPrefab: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  impactVfxLifetime: 2
 --- !u!114 &1152006691
 MonoBehaviour:
   m_ObjectHideFlags: 0
