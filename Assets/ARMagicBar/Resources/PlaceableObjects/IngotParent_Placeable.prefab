@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 6644459366001057443}
   - component: {fileID: 3073836832651131690}
   - component: {fileID: 4910420968166479552}
+  - component: {fileID: 6778958736757323751}
   m_Layer: 0
   m_Name: 1_ignot
   m_TagString: Ingot
@@ -446,6 +447,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetRbPositionOfObject
   rb: {fileID: 6644459366001057443}
+--- !u!114 &6778958736757323751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 425696923746554253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c4633d7b31d204fb51c0cb64b2833c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardFallDetector
+  groundTag: Ground
 --- !u!1 &610744883667613336
 GameObject:
   m_ObjectHideFlags: 0
@@ -4005,6 +4019,7 @@ GameObject:
   - component: {fileID: 598385938309004221}
   - component: {fileID: 5616747519116739879}
   - component: {fileID: 6922415017187028729}
+  - component: {fileID: 2386960522619409646}
   m_Layer: 0
   m_Name: IngotParent_Placeable
   m_TagString: Untagged
@@ -4145,6 +4160,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78405631efd973c4493ed93bb2b36203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOnRestart
+--- !u!114 &2386960522619409646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074106255158027345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c4633d7b31d204fb51c0cb64b2833c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardFallDetector
+  groundTag: Ground
 --- !u!1 &7148339303328184539
 GameObject:
   m_ObjectHideFlags: 0

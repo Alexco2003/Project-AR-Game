@@ -389,6 +389,7 @@ GameObject:
   - component: {fileID: 60727384495566613}
   - component: {fileID: 4216722184108882760}
   - component: {fileID: 5958479181735203896}
+  - component: {fileID: 176110546193711101}
   m_Layer: 0
   m_Name: Crystal
   m_TagString: Crystal
@@ -542,6 +543,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResetRbPositionOfObject
   rb: {fileID: 8309894471079017014}
+--- !u!114 &176110546193711101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780020809665710736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c4633d7b31d204fb51c0cb64b2833c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RewardFallDetector
+  groundTag: Ground
 --- !u!1 &1057008107283970679
 GameObject:
   m_ObjectHideFlags: 0

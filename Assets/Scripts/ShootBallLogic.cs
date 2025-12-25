@@ -16,6 +16,11 @@ public class ShootBallLogic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SpeedChangeUI.OnSpeedChanged += (int newSpeed) => 
+        {
+            ballForwardForce = newSpeed;
+        };
+
         xrOrigin = FindFirstObjectByType<XROrigin>();
 
         if (xrOrigin != null && xrOrigin.Camera != null)
@@ -50,5 +55,14 @@ public class ShootBallLogic : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnDestroy()
+    {
+        UIButtonHandler.OnUIShootButtonPressed -= ShootBallOnShootButtonPressed;
+        SpeedChangeUI.OnSpeedChanged -= (int newSpeed) => 
+        {
+            ballForwardForce = newSpeed;
+        };
     }
 }

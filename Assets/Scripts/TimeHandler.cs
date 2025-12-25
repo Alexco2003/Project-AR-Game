@@ -1,4 +1,5 @@
 using System;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -9,6 +10,13 @@ public class TimeHandler : MonoBehaviour
 
     [SerializeField] private bool startBuildOnAwake = true;
 
+    [SerializeField] 
+    private AudioClip timeClip;
+    [SerializeField, Range(0f, 1f)] 
+    private float timeVolume = 0.25f;
+    [SerializeField, Range(0.1f, 3f)] 
+    private float timePlaybackPitch = 2f;
+
     // Build timing (measures how long player spent building before pressing START)
     private bool isBuilding;
     private float buildStartTime;
@@ -18,6 +26,9 @@ public class TimeHandler : MonoBehaviour
     private bool isCountingDown;
     private float countdownDuration;
     private float remainingTime;
+
+    private Camera mainCam;
+    private XROrigin xrOrigin;
 
     public static event Action OnCountdownFinished;
 
@@ -64,6 +75,23 @@ public class TimeHandler : MonoBehaviour
 
         OnCountdownChanged?.Invoke();
         remainingTime += 5f;
+
+        if (timeClip != null)
+        {
+            var playPos = mainCam != null ? mainCam.transform.position : Vector3.zero;
+
+            var temp = new GameObject("TempAudio_" + timeClip.name);
+            temp.transform.position = playPos;
+            var src = temp.AddComponent<AudioSource>();
+            src.clip = timeClip;
+            src.volume = Mathf.Clamp01(timeVolume);
+            src.spatialBlend = 0f;
+            src.playOnAwake = false;
+            src.pitch = Mathf.Max(0.01f, timePlaybackPitch);
+            src.Play();
+            Destroy(temp, timeClip.length / Mathf.Abs(src.pitch) + 0.1f);
+        }
+
         UpdateTimeTextDisplay(remainingTime, false, true);
     }
 
@@ -102,6 +130,17 @@ public class TimeHandler : MonoBehaviour
     {
         if (isBuilding)
             UpdateTimeTextDisplay(0f);
+
+        xrOrigin = FindFirstObjectByType<XROrigin>();
+
+        if (xrOrigin != null && xrOrigin.Camera != null)
+        {
+            mainCam = xrOrigin.Camera;
+        }
+        else
+        {
+            mainCam = FindObjectOfType<Camera>();
+        }
     }
 
     private void Update()

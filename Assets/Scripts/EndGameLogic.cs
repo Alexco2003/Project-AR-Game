@@ -1,4 +1,5 @@
 using System;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,10 +24,19 @@ public class EndGameLogic : MonoBehaviour
     [SerializeField] 
     private int timeToScoreMultiplier = 5;
 
+
+    [SerializeField]
+    private AudioClip endGameClip;
+    [SerializeField, Range(0f, 1f)]
+    private float endGameVolume = 0.5f;
+
     private ScoreHandler scoreHandler;
     private TimeHandler timeHandler;
 
     private bool gameEnded;
+
+    private Camera mainCam;
+    private XROrigin xrOrigin;
 
     private void Awake()
     {
@@ -52,6 +62,17 @@ public class EndGameLogic : MonoBehaviour
         gameEnded = false;
         if (endGameText != null) 
             endGameText.text = string.Empty;
+
+        xrOrigin = FindFirstObjectByType<XROrigin>();
+
+        if (xrOrigin != null && xrOrigin.Camera != null)
+        {
+            mainCam = xrOrigin.Camera;
+        }
+        else
+        {
+            mainCam = FindObjectOfType<Camera>();
+        }
     }
 
     private void Update()
@@ -106,14 +127,21 @@ public class EndGameLogic : MonoBehaviour
 
         int finalScore = baseScore + bonus;
         string header = win ? "You won!" : "Game over";
-        string scoreLine = $"Score: {finalScore}";
+        string scoreLine = bonus > 0 ? $"Base Score: {baseScore}" : $"Score: {baseScore}"; 
+        string finalScoreLine = bonus > 0 ? $"Final Score: {finalScore}" : string.Empty;
         string timeLine = remaining > 0f ? $"Time left: {Mathf.CeilToInt(remaining)}s" : string.Empty;
         if (endGameText != null)
         {
             if (string.IsNullOrEmpty(timeLine))
                 endGameText.text = $"{header}\n{scoreLine}";
             else
-                endGameText.text = $"{header}\n{scoreLine}\n{timeLine}";
+                endGameText.text = $"{header}\n{scoreLine}\n{timeLine}\n{finalScoreLine}";
+        }
+
+        if (endGameClip != null)
+        {
+            var playPos = mainCam != null ? mainCam.transform.position : Vector3.zero;
+            AudioSource.PlayClipAtPoint(endGameClip, playPos, Mathf.Clamp01(endGameVolume));
         }
     }
 
