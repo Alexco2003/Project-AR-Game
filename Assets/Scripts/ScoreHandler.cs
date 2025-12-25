@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -46,9 +47,19 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float impactSoundVolume = 1f;
 
+    [SerializeField]
+    private AudioClip scoreClip;
+    [SerializeField, Range(0f, 1f)]
+    private float scoreVolume = 0.25f;
+    [SerializeField, Range(0.1f, 3f)]
+    private float scorePlaybackPitch = 2f;
+
     private Dictionary<string, int> rewardMap = new Dictionary<string, int>(StringComparer.Ordinal);
 
     public static event Action OnScoreChanged;
+
+    private Camera mainCam;
+    private XROrigin xrOrigin;
 
     private void Awake()
     {
@@ -87,6 +98,17 @@ public class ScoreHandler : MonoBehaviour
 
     private void Start()
     {
+        xrOrigin = FindFirstObjectByType<XROrigin>();
+
+        if (xrOrigin != null && xrOrigin.Camera != null)
+        {
+            mainCam = xrOrigin.Camera;
+        }
+        else
+        {
+            mainCam = FindObjectOfType<Camera>();
+        }
+
         RefreshScoreText();
     }
 
@@ -175,6 +197,23 @@ public class ScoreHandler : MonoBehaviour
     {
         if (amount == 0) return;
         score += amount;
+
+        if (scoreClip != null)
+        {
+            var playPos = mainCam != null ? mainCam.transform.position : Vector3.zero;
+
+            var temp = new GameObject("TempAudio_" + scoreClip.name);
+            temp.transform.position = playPos;
+            var src = temp.AddComponent<AudioSource>();
+            src.clip = scoreClip;
+            src.volume = Mathf.Clamp01(scoreVolume);
+            src.spatialBlend = 0f;
+            src.playOnAwake = false;
+            src.pitch = Mathf.Max(0.01f, scorePlaybackPitch);
+            src.Play();
+            Destroy(temp, scoreClip.length / Mathf.Abs(src.pitch) + 0.1f);
+        }
+
         RefreshScoreText();
     
     }

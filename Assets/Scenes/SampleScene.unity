@@ -2173,6 +2173,9 @@ MonoBehaviour:
   impactVfxLifetime: 2
   impactSoundClip: {fileID: 8300000, guid: c1f8c36ebdb20024ea8a59ec457d582c, type: 3}
   impactSoundVolume: 0.5
+  scoreClip: {fileID: 8300000, guid: 668620113e9d6dc4483ba3d8dbae9fcf, type: 3}
+  scoreVolume: 0.25
+  scorePlaybackPitch: 2
 --- !u!114 &1152006691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2187,6 +2190,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimeHandler
   timeText: {fileID: 303422704}
   startBuildOnAwake: 1
+  timeClip: {fileID: 8300000, guid: 568470e29bef88c4aaa027db357be957, type: 3}
+  timeVolume: 0.25
+  timePlaybackPitch: 2
 --- !u!114 &1152006692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2238,7 +2244,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: bea93a38b71b64b598109b3a3b1a0048, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -28,7 +28,7 @@ public class EndGameLogic : MonoBehaviour
     [SerializeField]
     private AudioClip endGameClip;
     [SerializeField, Range(0f, 1f)]
-    private float endGameVolume = 1f;
+    private float endGameVolume = 0.5f;
 
     private ScoreHandler scoreHandler;
     private TimeHandler timeHandler;
