@@ -40,6 +40,12 @@ public class ScoreHandler : MonoBehaviour
     [SerializeField]
     private float impactVfxLifetime = 2f;
 
+    [SerializeField]
+    private AudioClip impactSoundClip;
+
+    [SerializeField, Range(0f, 1f)]
+    private float impactSoundVolume = 1f;
+
     private Dictionary<string, int> rewardMap = new Dictionary<string, int>(StringComparer.Ordinal);
 
     public static event Action OnScoreChanged;
@@ -144,6 +150,11 @@ public class ScoreHandler : MonoBehaviour
                 {
                     Debug.LogWarning("Failed to spawn impact VFX: " + ex.Message);
                 }
+            }
+
+            if (impactSoundClip != null)
+            {
+                AudioSource.PlayClipAtPoint(impactSoundClip, contactPoint, Mathf.Clamp01(impactSoundVolume));
             }
 
             if (destroyOnHit)
