@@ -127,14 +127,15 @@ public class EndGameLogic : MonoBehaviour
 
         int finalScore = baseScore + bonus;
         string header = win ? "You won!" : "Game over";
-        string scoreLine = $"Score: {finalScore}";
+        string scoreLine = bonus > 0 ? $"Base Score: {baseScore}" : $"Score: {baseScore}"; 
+        string finalScoreLine = bonus > 0 ? $"Final Score: {finalScore}" : string.Empty;
         string timeLine = remaining > 0f ? $"Time left: {Mathf.CeilToInt(remaining)}s" : string.Empty;
         if (endGameText != null)
         {
             if (string.IsNullOrEmpty(timeLine))
                 endGameText.text = $"{header}\n{scoreLine}";
             else
-                endGameText.text = $"{header}\n{scoreLine}\n{timeLine}";
+                endGameText.text = $"{header}\n{scoreLine}\n{timeLine}\n{finalScoreLine}";
         }
 
         if (endGameClip != null)
