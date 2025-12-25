@@ -2209,6 +2209,8 @@ MonoBehaviour:
   - Jar
   addRemainingTimeToScore: 1
   timeToScoreMultiplier: 5
+  endGameClip: {fileID: 8300000, guid: d296adf47dd0a514fbd36b5ff7df9f9c, type: 3}
+  endGameVolume: 0.5
 --- !u!114 &1152006693
 MonoBehaviour:
   m_ObjectHideFlags: 0

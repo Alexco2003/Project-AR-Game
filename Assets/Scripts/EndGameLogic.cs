@@ -1,4 +1,5 @@
 using System;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,10 +24,19 @@ public class EndGameLogic : MonoBehaviour
     [SerializeField] 
     private int timeToScoreMultiplier = 5;
 
+
+    [SerializeField]
+    private AudioClip endGameClip;
+    [SerializeField, Range(0f, 1f)]
+    private float endGameVolume = 1f;
+
     private ScoreHandler scoreHandler;
     private TimeHandler timeHandler;
 
     private bool gameEnded;
+
+    private Camera mainCam;
+    private XROrigin xrOrigin;
 
     private void Awake()
     {
@@ -52,6 +62,17 @@ public class EndGameLogic : MonoBehaviour
         gameEnded = false;
         if (endGameText != null) 
             endGameText.text = string.Empty;
+
+        xrOrigin = FindFirstObjectByType<XROrigin>();
+
+        if (xrOrigin != null && xrOrigin.Camera != null)
+        {
+            mainCam = xrOrigin.Camera;
+        }
+        else
+        {
+            mainCam = FindObjectOfType<Camera>();
+        }
     }
 
     private void Update()
@@ -114,6 +135,12 @@ public class EndGameLogic : MonoBehaviour
                 endGameText.text = $"{header}\n{scoreLine}";
             else
                 endGameText.text = $"{header}\n{scoreLine}\n{timeLine}";
+        }
+
+        if (endGameClip != null)
+        {
+            var playPos = mainCam != null ? mainCam.transform.position : Vector3.zero;
+            AudioSource.PlayClipAtPoint(endGameClip, playPos, Mathf.Clamp01(endGameVolume));
         }
     }
 
