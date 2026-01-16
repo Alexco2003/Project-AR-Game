@@ -4,6 +4,10 @@
 
 It reimagines the classic physics-destruction genre by adding a layer of player agency: **You are both the Architect and the Destroyer.** Unlike traditional games where you only knock things down, Lavash empowers you to build your own structures in the real world before switching roles to demolish them with physics-based projectiles.
 
+> 👉 [Watch Lavash - Gameplay Demo](https://youtu.be/OHYryvuz9c0)
+>
+> [![Watch on YouTube](https://img.shields.io/badge/Watch_Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/OHYryvuz9c0)
+
 ## 🎮 Gameplay Features
 * **Build Your World:** Use 9 unique building blocks to construct fortresses on any flat surface in your room.
 * **Physics-Based Destruction:** Switch to gameplay mode and launch Lava Balls to crumble your creation.
