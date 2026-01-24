@@ -4,6 +4,8 @@
 
 It reimagines the classic physics-destruction genre by adding a layer of player agency: **You are both the Architect and the Destroyer.** Unlike traditional games where you only knock things down, Lavash empowers you to build your own structures in the real world before switching roles to demolish them with physics-based projectiles.
 
+> **Project Context:** This game was developed for the [Introduction to Virtual and Augmented Reality](https://ocw.cs.pub.ro/courses/irva) course, fulfilling the requirements of the [2025 Project Assignment](https://ocw.cs.pub.ro/courses/irva/proiect/proiect).
+
 > 👉 [Watch Lavash - Gameplay Demo](https://youtu.be/OHYryvuz9c0)
 >
 > [![Watch on YouTube](https://img.shields.io/badge/Watch_Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/OHYryvuz9c0)
@@ -31,7 +33,7 @@ A complete **Presentation and Game Guide** (including how the scoring math works
 > **[📂 Click here to view the Presentation folder](./Presentation)**
 
 ## 🛠️ Built With
-* **Unity Engine**
+* **Unity Engine** (6000.2.6f2)
 * **AR Foundation**
 
 ---
